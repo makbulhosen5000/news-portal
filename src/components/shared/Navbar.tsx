@@ -13,7 +13,7 @@ import {
     NavigationMenuTrigger,
   } from "@/components/ui/navigation-menu"
   import { usePathname } from 'next/navigation';
-  
+
 function Navbar() {
   const pathname = usePathname();
   return (
@@ -31,7 +31,7 @@ function Navbar() {
         <NavigationMenuList>
            <NavigationMenuLink href='/news' className={`link ${pathname === '/news' ? 'text-red-600 bg-red-600 text-bold' : ''}`}>News</NavigationMenuLink>
             <NavigationMenuItem>
-            <NavigationMenuLink href='/services'>
+            <NavigationMenuLink href='/services' className={`link ${pathname === '/services' ? 'text-red-600 bg-red-600 text-bold' : ''}`}>
               <NavigationMenuTrigger>Services</NavigationMenuTrigger>
             </NavigationMenuLink>
             <NavigationMenuContent>
