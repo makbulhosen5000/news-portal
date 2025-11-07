@@ -1,4 +1,5 @@
 
+"use client";
 import Link from 'next/link'
 import { Switch } from "@/components/ui/switch"
 import { Button } from "@/components/ui/button"
@@ -11,11 +12,13 @@ import {
     NavigationMenuList,
     NavigationMenuTrigger,
   } from "@/components/ui/navigation-menu"
-
+  import { usePathname } from 'next/navigation';
+  
 function Navbar() {
+  const pathname = usePathname();
   return (
     <header className="py-4 shadow-md">
-      <nav className="max-w-7xl mx-auto flex justify-between items-center px-4 sm:px-6 lg:px-8">
+      <nav className="max-w-7xl mx-auto flex justify-between items-center sm:px-6 lg:px-8">
         {/* Logo */}
         <div className="text-xl font-bold">
           <Link href="/">
@@ -26,7 +29,7 @@ function Navbar() {
         {/* Desktop Menu */}
         <NavigationMenu className='hidden lg:flex'>
         <NavigationMenuList>
-           <NavigationMenuLink href='/news'>News</NavigationMenuLink>
+           <NavigationMenuLink href='/news' className={`link ${pathname === '/news' ? 'text-red-600 bg-red-600 text-bold' : ''}`}>News</NavigationMenuLink>
             <NavigationMenuItem>
             <NavigationMenuLink href='/services'>
               <NavigationMenuTrigger>Services</NavigationMenuTrigger>
@@ -45,8 +48,8 @@ function Navbar() {
                 </ul>
             </NavigationMenuContent>
             </NavigationMenuItem>
-        <NavigationMenuLink href='/about'>About</NavigationMenuLink>
-        <NavigationMenuLink href='/contact'>Contract</NavigationMenuLink>
+        <NavigationMenuLink href='/about' className={`link ${pathname === '/about' ? 'text-red-600 bg-red-600 text-bold' : ''}`}>About</NavigationMenuLink>
+        <NavigationMenuLink href='/contact' className={`link ${pathname === '/contact' ? 'text-red-600 bg-red-600 text-bold' : ''}`}>Contract</NavigationMenuLink>
         </NavigationMenuList>
         </NavigationMenu>
 
@@ -57,11 +60,11 @@ function Navbar() {
                 <Switch/>
             </div>
            <div><Button className='ml-2' variant="default">Login</Button></div>
-           {/* mobile humber menu */}
-           <div className='lg:hidden'>
-              <Button variant="outline"><FiMenu size={24} /></Button>
-           </div>
         </div>
+        {/* mobile humber menu */}
+        <div className='lg:hidden'>
+            <Button variant="outline"><FiMenu size={24} /></Button>
+          </div>
       </nav>
     </header>
   )
